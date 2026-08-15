@@ -41,7 +41,7 @@ export const getAllTeamMembers = async (req: Request, res: Response): Promise<an
 export const getTeamMember = async (req: Request, res: Response): Promise<any> => {
   try {
     const { id } = req.params;
-    const member = await teamMemberService.getTeamMemberById(id);
+    const member = await teamMemberService.getTeamMemberById(String(id));
     if (!member) {
       return res.status(404).json({ success: false, message: 'Team member not found' });
     }
@@ -65,7 +65,7 @@ export const updateTeamMember = async (req: Request, res: Response): Promise<any
       updateData.isKeyPartner = updateData.isKeyPartner === 'true' || updateData.isKeyPartner === true;
     }
 
-    const updatedMember = await teamMemberService.updateTeamMember(id, updateData);
+    const updatedMember = await teamMemberService.updateTeamMember(String(id), updateData);
     if (!updatedMember) {
       return res.status(404).json({ success: false, message: 'Team member not found' });
     }
@@ -79,7 +79,7 @@ export const updateTeamMember = async (req: Request, res: Response): Promise<any
 export const deleteTeamMember = async (req: Request, res: Response): Promise<any> => {
   try {
     const { id } = req.params;
-    const deleted = await teamMemberService.deleteTeamMember(id);
+    const deleted = await teamMemberService.deleteTeamMember(String(id));
     if (!deleted) {
       return res.status(404).json({ success: false, message: 'Team member not found' });
     }
