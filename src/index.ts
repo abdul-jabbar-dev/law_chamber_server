@@ -18,7 +18,9 @@ const app: Express = express();
 const PORT = env.PORT;
 
 // Middleware 
-app.use(cors());
+app.use(cors({
+  origin: ["https://law-chamber-kappa.vercel.app", "https://law-chamber-kappa.vercel.app/*", "http://localhost:3000", "http://localhost:3000/*", "http://localhost:5000", "http://localhost:5000/*"]
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
